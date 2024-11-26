@@ -47,6 +47,8 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT: 
                 return
+        if kk_rct.colliderect(bb_rct):
+            return #ゲームオーバー
         screen.blit(bg_img, [0, 0]) 
 
         key_lst = pg.key.get_pressed()
@@ -63,6 +65,7 @@ def main():
         screen.blit(kk_img, kk_rct)
         screen.blit(bb_img, bb_rct)
         bb_rct.move_ip(vx, vy) #爆弾を動かす
+         #爆弾が画面外なら元に戻す
         yoko, tate = check_bound(bb_rct)
         if not yoko:
             vx *= -1
